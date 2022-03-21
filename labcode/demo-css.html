@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Demo 3 ways of including CSS</title>
+    
+    <!-- Embedded style sheet -->
+    <style>
+        .second { 
+          font-size:40px;
+          color: red;          
+        }
+    </style>
+    
+    <!-- External style sheet simple.css -->
+    <link rel="stylesheet" href="css/simple.css">    
+    
+</head>
+<body>
+    
+    <!-- Inline styles -->
+    <p style="color:green; font-size:40px;">This paragraph has green words.</p>
+    
+    <p class="second">This paragraph has red words.</p>
+    
+    <!-- Styled with simple.css -->
+    <p id="third">This paragraph has blue words.</p>
+
+</body>
+</html>
