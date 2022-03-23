@@ -21,7 +21,7 @@ let unknownMessage;
 console.log(unknownMessage);
 
 // Error trying to reference a variable that has never been declared
-//console.log(counter);
+console.log(counter);
 
 // Cannot change a const variable
 const workday = 5;
