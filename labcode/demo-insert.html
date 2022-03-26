@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    <ul id="menu">
+        <li>About</li>
+        <li>Contact</li>
+    </ul>
+
+    <script>
+
+        let menu = document.getElementById('menu');
+        
+        // create a new li node to put right at the beginning
+        let firstLi = document.createElement('li');
+        firstLi.textContent = 'Home';
+        menu.insertBefore(firstLi, menu.firstElementChild);
+
+        // create a new li node to put right at the end
+        let lastLi = document.createElement('li');
+        lastLi.textContent = 'Services';
+        menu.insertBefore(lastLi, menu.lastElementChild.nextSibling);        
+
+    </script>
+</body>
+
+</html>
