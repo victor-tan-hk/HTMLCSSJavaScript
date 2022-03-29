@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    line-height: 1.3;
+}
+
+body {
+    font-family: Optima, Calibri, sans-serif;
+}
+
+.header {
+    background: url(./images/landing-page-header-bg.jpg);
+    background-attachment: fixed;
+    background-position: right center;
+    background-size: cover;
+    padding-bottom: 1em;
+    width: 100vw;
+    height: 100vh;
+}
+
+.header-image {
+    float: left;
+    width: 33%;
+    margin-top: 3em;
+    padding-right: 3em;
+    text-align: right;
+}
