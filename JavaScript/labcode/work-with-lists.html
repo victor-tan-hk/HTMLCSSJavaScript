@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        .categoryBox {
+            background-color: lightgrey;
+            width: 300px;
+            border: 3px solid green;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 20px;
+            visibility: visible;
+        }
+
+        .categoryTitle {
+            text-align: center;
+            font-size: 1em;
+            font-weight: bolder;
+        }
+
+        .errorMessage {
+            font-size: larger;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <fieldset>
+        <legend>Creating a category</legend>
+
+
+        <p>Enter a category to create :
+            <input type="text" id="categoryEntry" name="categoryEntry">
+        </p>
+        <button id="createCatBtn">Create</button>
+        <p id="addCategoryStatus" class="errorMessage"></p>
+
+
+    </fieldset>
+
+
+    <fieldset>
+        <legend>Adding items to a category</legend>
+        <label for="categoryOptions">Categories Available:</label>
+        <select id="categoryOptions" name="categoryOptions">
+        </select>
+
+        <p>Enter an item to add to the selected category :
+            <input type="text" id="itemEntry" name="itemEntry">
+        </p>
+
+        <button id="addItemBtn">Add item</button>
+        <p id="addItemStatus" class="errorMessage"></p>
+
+
+    </fieldset>
+
+    <div>
+
+
+    </div>
+
+    <div id="categoryBoxLocation"></div>
+
+    <script src="simple.js"></script>
+</body>
+
+</html>
