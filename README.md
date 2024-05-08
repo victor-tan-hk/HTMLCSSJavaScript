@@ -1,3 +1,3 @@
 # Intro to Web Development with HTML, CSS and JavaScript
 
-# MPC SE Track 2023
+# Intel workshop in preparation for Angular 10 May 2024
