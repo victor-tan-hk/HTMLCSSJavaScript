@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>Illustrating querySelector use</h1>
+    <p class="cool normal">A cool paragraph</p>
+    <p class="boring">A boring paragraph</p>
+    <h1 class="cool icy" id="nice" title="important stuff!">A cool header!</h1>
+    <h2>A normal header</h2>
+    <a href="https://www.google.com/" class="cool">Google Search</a>
+    <div>
+        <div id="great">
+            <h3 class="cool">Cool header inside</h3>
+            <h3>Normal header inside</h3>
+        </div>
+    </div>
+    <ul class="cool icy">
+        <li>Chocolate Cake</li>
+        <li>Black Forest Cake</li>
+        <li>Pineapple Cake</li>
+    </ul>
+
+    <ul>
+        <li>asdfasdf</li>
+        <li>wertwert</li>
+        <li>wertwertwert</li>
+    </ul>
+
+    <script>
+        console.log("Getting a list of all nodes with the class cool"); 
+        const nodeList = document.querySelectorAll(".cool");
+        console.log("The number of elements with the class value of cool is ", nodeList.length);
+        for (let i = 0; i < nodeList.length; i++) {
+            console.log("The description of the node is", nodeList[i]);
+
+            console.log("The node tag is ", nodeList[i].tagName);
+
+            console.log("The attributes on this node are ", nodeList[i].getAttributeNames());
+
+            console.log("The node has the following class names : ", nodeList[i].className);
+
+            console.log("The node has " + nodeList[i].childElementCount + " child elements");
+
+            // All the nodes are ELEMENT nodes, which have the integer value of 1
+            console.log("The node type is ", nodeList[i].nodeType);            
+            
+        }
+
+        console.log("Getting the first node with the class icy");
+
+        const oneNode = document.querySelector(".icy");
+        console.log("The description of the node is", oneNode);
+
+        const ulNode = document.querySelector("ul");
+
+        console.log("The description of the node is", ulNode);
+
+        // Besides the main document object, we can also invoke the querySelector method or querySelectorAll method on an Element
+        const liNodes = ulNode.querySelectorAll("li");
+
+
+        console.log("The number of li elements within the main ul element is ", liNodes.length);
+        for (let i = 0; i < liNodes.length; i++) {
+            console.log("The description of the node is", liNodes[i]);            
+        }
+
+    </script>
+</body>
+
+</html>

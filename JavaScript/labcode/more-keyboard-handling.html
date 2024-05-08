@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #firstSelector, #secondSelector, #thirdSelector, #fourthSelector {
+            width: 450px;
+            border: 2px solid red;
+            padding: 5px;
+            margin: 25px;
+            visibility: hidden;
+        }
+
+        .textbox {
+            background-color: lightgrey;
+            width: 300px;
+            border: 10px solid green;
+            border-radius: 30px;
+            padding: 50px;
+            margin: 20px;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Use up and down arrow keys to select text box to type in</h2>
+    <h2>Use left and right arrow keys to switch between different box border styles</h2>
+
+
+    <div id="firstSelector">
+        <div class="textbox"></div>
+    </div>
+
+    <div id="secondSelector">
+        <div class="textbox"></div>
+    </div>
+
+    <div id="thirdSelector">
+        <div class="textbox"></div>
+    </div>
+
+    <div id="fourthSelector">
+        <div class="textbox"></div>
+    </div>    
+
+    <script>
+        let activeBox = [];
+
+        let currentBoxPos = 0;
+        activeBox[0] = document.querySelector('#firstSelector');
+        activeBox[1] = document.querySelector('#secondSelector');
+        activeBox[2] = document.querySelector('#thirdSelector');
+        activeBox[3] = document.querySelector('#fourthSelector');
+
+        let borderTypes = ['solid', 'dashed', 'dotted', 'double', 'inset', 'ridge'];
+        let borderTypesPos = [0, 0, 0, 0];
+
+        activeBox[currentBoxPos].style.visibility = 'visible';
+
+        document.body.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowDown') {
+                activeBox[currentBoxPos].style.visibility = 'hidden';
+                currentBoxPos += 1;
+                if (currentBoxPos > 3)
+                    currentBoxPos = 0;
+                activeBox[currentBoxPos].style.visibility = 'visible';
+                console.log(currentBoxPos);
+            } else if (event.key === 'ArrowUp') {
+                activeBox[currentBoxPos].style.visibility = 'hidden';
+                currentBoxPos -= 1;
+                if (currentBoxPos < 0)
+                    currentBoxPos = 3;
+                activeBox[currentBoxPos].style.visibility = 'visible';
+                console.log(currentBoxPos);
+            } else if (event.key === 'ArrowRight') {
+                let textBox = activeBox[currentBoxPos].firstElementChild;
+                borderTypesPos[currentBoxPos]++;
+                if (borderTypesPos[currentBoxPos] === borderTypes.length) {
+                    borderTypesPos[currentBoxPos] = 0;
+                }
+                let borderSetting = '10px ' + borderTypes[borderTypesPos[currentBoxPos]] + ' green';
+                console.log(borderSetting);
+                textBox.style.border = borderSetting;
+            } else if (event.key === 'ArrowLeft') {
+                let textBox = activeBox[currentBoxPos].firstElementChild;
+                borderTypesPos[currentBoxPos]--;
+                if (borderTypesPos[currentBoxPos] < 0) {
+                    borderTypesPos[currentBoxPos] = borderTypes.length -1;
+                }
+                let borderSetting = '10px ' + borderTypes[borderTypesPos[currentBoxPos]] + ' green';
+                console.log(borderSetting);
+                textBox.style.border = borderSetting;
+            } else {
+                let textBox = activeBox[currentBoxPos].firstElementChild;
+
+                if (event.key === 'Backspace') {
+                    textBox.textContent = textBox.textContent.slice(0, -1);
+                } else if (event.key.length === 1) {
+                    textBox.textContent += event.key;
+                }
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        #buttonBox {
+            width: 500px;
+            height: 30px;
+            padding: 15px;
+            border: 5px solid red;
+            margin: 30px 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Demonstrating DOM manipulation with mouse events</h1>
+
+    <div id="buttonBox">
+        <button id="americanAddBtn">Add American cars</button>
+        <button id="malaysianAddBtn">Add Malaysian cars</button>
+        <button id="randomAddBtn">Add a random car</button>
+    </div>
+
+    <div id="buttonBox">
+        <button id="americanRemoveBtn">Remove American cars</button>
+        <button id="malaysianRemoveBtn">Remove Malaysian cars</button>
+        <button id="randomRemoveBtn">Remove a random car</button>
+    </div>
+
+    <div id="buttonBox">
+        <button id="flipBtn">Switch between adding cars to start / end of list</button>
+    </div>
+
+    <h4 id="addStatusMessage">Current status: Add to end of list</h4>
+
+    <h3>My favorite cars</h3>
+    <ol id="carList"></ol>
+
+
+
+
+    <script>
+        // Set initial value for boolean variable
+        // to determine whether to append to start or end of list
+        let performAppend = true;
+
+        // Initialize values for all car types
+        let malaysianCars = ['Proton','Perodua','Naza'];
+        let americanCars = ['Chevrolet','Ford','Chrysler'];
+        let randomCars = ['Mazda','Toyota','Honda', 
+        'Rolls-Royce', 'Bentley', 'Jaguar', 'Lotus', 'Mercedes', 'Renault', 'BMW']; 
+
+        // Get references to all add buttons
+        let americanAddBtn = document.querySelector("#americanAddBtn");
+        let malaysianAddBtn = document.querySelector('#malaysianAddBtn');
+        let randomAddBtn = document.querySelector('#randomAddBtn');
+
+        // Get references to all remove buttons
+        let americanRemoveBtn = document.querySelector("#americanRemoveBtn");
+        let malaysianRemoveBtn = document.querySelector("#malaysianRemoveBtn");
+        let randomRemoveBtn = document.querySelector("#randomRemoveBtn");
+
+        // Get reference to flip button and status message for position to add
+        let flipBtn = document.querySelector('#flipBtn');
+        let addStatusMessage = document.querySelector("#addStatusMessage");
+        
+        // Get reference to car list 
+        let carList = document.querySelector("#carList");
+
+
+        addToCarList = function(carsToAdd, className) {
+            let newCars = carsToAdd.map(car => {
+                let newLi = document.createElement('li');
+                newLi.textContent = car;
+                newLi.className = className;
+                return newLi;
+            });
+            if (performAppend)
+                carList.append(...newCars);
+            else
+                carList.prepend(...newCars);
+        };
+
+        removeFromCarList = function(carTypeToRemove) {
+
+/*             Use querySelectorAll to get a static NodeList instead of  
+            getElementsByClassName which returns a live HTMLCollection which interferes with the removal operation in the loop */
+
+            let carsToRemove = carList.querySelectorAll('.'+carTypeToRemove);
+            for (let i = 0; i < carsToRemove.length; i++) {
+                carList.removeChild(carsToRemove[i]);                
+            }
+        };
+
+        addRandomCar = function() {
+            // Get a random index number of a string in the randomCars array
+            let randomCarPos = Math.floor(Math.random() * randomCars.length);
+
+            // Create a new li element from this string
+            let newLi = document.createElement('li');
+            newLi.textContent = randomCars[randomCarPos];
+            newLi.className = 'random';
+            // Get a random list position for the existing child list elements in the main UL element
+            let childListElements = carList.children;
+            let childListPos = Math.floor(Math.random() * childListElements.length);
+            // Insert the newly created li element at this random position
+            carList.insertBefore(newLi, childListElements[childListPos]);
+            console.log("Added a new " + randomCars[randomCarPos] + " at position " + (childListPos+1));
+        };
+
+        removeRandomCar = function() {
+
+            let randomCars = carList.querySelectorAll('.random');
+            console.log("There are " + randomCars.length + " random cars");
+            if (randomCars.length > 0) {
+                // Get a random index number of a car to remove
+                let randomCarPos = Math.floor(Math.random() * randomCars.length);
+                console.log("Removing car : ", randomCars[randomCarPos].textContent);
+                carList.removeChild(randomCars[randomCarPos]);
+            }
+
+        };
+
+        flipBtn.addEventListener('click', function() {
+            performAppend = !performAppend;
+            if (performAppend) 
+                addStatusMessage.textContent = "Current status: Add to end of list";
+            else
+                addStatusMessage.textContent = "Current status: Add to front of list";          
+        });
+
+        americanAddBtn.addEventListener('click', function (event) {
+            addToCarList(americanCars, "american");
+        });
+
+        malaysianAddBtn.addEventListener('click', function (event) {
+            addToCarList(malaysianCars, "malaysian");
+        });
+
+        randomAddBtn.addEventListener('click', function (event) {
+            addRandomCar();
+        });
+
+        americanRemoveBtn.addEventListener('click', function (event) {
+            removeFromCarList("american");
+        });
+
+        malaysianRemoveBtn.addEventListener('click', function (event) {
+            removeFromCarList("malaysian");
+        });
+
+        randomRemoveBtn.addEventListener('click', function (event) {
+            removeRandomCar();
+        });
+
+    </script>
+</body>
+
+</html>

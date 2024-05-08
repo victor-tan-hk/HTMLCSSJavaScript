@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        #firstBox {
+            width: 200px;
+            height: 100px;
+            padding: 15px;
+            border: 10px solid red;
+            margin: 30px 20px;
+        }
+
+        #secondBox {
+            width: 200px;
+            height: 100px;
+            padding: 15px;
+            border: 10px solid blue;
+            margin: 30px 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Move your mouse inside the red box</h2>
+
+    <div id="firstBox"></div>
+    <p id="firstBoxInfo"></p>
+
+    <h2>Move your mouse inside the blue box and click somewhere</h2>
+
+    <div id="secondBox"></div>
+    <p id="secondBoxInfo"></p>
+
+    <button id="btn">Click me with any mouse button: left, right, middle, etc</button>
+    <p id="buttonInfo"></p>
+
+
+    <script>
+
+        let firstBox = document.querySelector("#firstBox");
+        let firstBoxInfo = document.querySelector("#firstBoxInfo");
+        firstBox.addEventListener('mousemove', function (event) {
+            let message = 'Mouse coordinates - (x : ' + event.clientX + ' , y : ' + event.clientY + ')';
+            firstBoxInfo.textContent = message;
+        });
+        firstBox.addEventListener('mouseout', function () {
+            firstBoxInfo.textContent = '';
+        });
+
+        let secondBox = document.querySelector("#secondBox");
+        let secondBoxInfo = document.querySelector("#secondBoxInfo");
+        secondBox.addEventListener('click', function (event) {
+            let message = 'You clicked at mouse coordinates - (x : ' + event.clientX + ' , y : ' + event.clientY + ')';
+            secondBoxInfo.textContent = message;
+        });
+
+        secondBox.addEventListener('mouseenter', function (event) {
+            let message = 'You just moved into the blue box';
+            secondBoxInfo.textContent = message;
+        });
+
+        secondBox.addEventListener('mouseleave', function (event) {
+            let message = 'You just left the blue box';
+            secondBoxInfo.textContent = message;
+        });
+
+
+        let btn = document.querySelector('#btn');
+
+        // disable context menu when right-mouse clicked
+        btn.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+
+        // show the mouse event message
+        btn.addEventListener('mouseup', (e) => {
+            let buttonInfo = document.querySelector('#buttonInfo');
+            switch (e.button) {
+                case 0:
+                buttonInfo.textContent = 'Left mouse button clicked.';
+                    break;
+                case 1:
+                buttonInfo.textContent = 'Middle mouse button clicked.';
+                    break;
+                case 2:
+                buttonInfo.textContent = 'Right mouse button clicked.';
+                    break;
+                default:
+                buttonInfo.textContent = `Unknown mouse button code: ${event.button}`;
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>

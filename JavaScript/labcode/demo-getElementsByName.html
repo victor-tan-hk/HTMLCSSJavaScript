@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    <h1>Illustrating getElementsByName</h1>
+
+    <form>
+        <input type="radio" id="html" name="language" value="HTML">
+        <label for="html">HTML</label><br>
+        <input type="radio" id="css" name="language" value="CSS">
+        <label for="css">CSS</label><br>
+        <input type="radio" id="javascript" name="language" value="JavaScript">
+        <label for="javascript">JavaScript</label>
+    </form>
+
+    <p class="cool normal">A cool paragraph</p>
+    <p class="boring">A boring paragraph</p>
+    <h1 class="cool icy" id="nice" title="important stuff!">A cool header!</h1>
+    <h2>A normal header</h2>
+    <a href="https://www.google.com/" class="cool">Google Search</a>
+    <div class="great">
+        <h1>Cool header inside</h1>
+        <h1>A duplicate cool header</h1>
+        <h2>Another cool header inside</h2>
+    </div>
+
+    <script>
+        const langList = document.getElementsByName("language");
+        console.log("The number of elements with the attribute value of language is ", langList.length);
+        for (let i = 0; i < langList.length; i++) {
+            console.log("The description of the node is", langList[i]);
+        }
+
+        const labelList = document.getElementsByTagName("label");
+        console.log("The number of label elements is ", labelList.length);
+        for (let i = 0; i < labelList.length; i++) {
+            console.log("The description of the element is", labelList[i]);
+        }
+
+        const coolList = document.getElementsByClassName("cool");
+        console.log("The number of elements with the class cool is ", coolList.length);
+        for (let i = 0; i < coolList.length; i++) {
+            console.log("The description of the element is", coolList[i]);
+        }
+
+        const greatList = document.getElementsByClassName("great");
+        // Only one element with the class great
+        console.log("The number of elements with the class great is ", greatList.length);
+
+        // Call getElementsByTagName on that single element
+        const h1List = greatList[0].getElementsByTagName("h1");
+        console.log("The number of child h1 elements of the element with the class great is ", h1List.length);
+
+        for (let i = 0; i < h1List.length; i++) {
+            console.log("The description of the element is", h1List[i]);
+        }
+
+    </script>
+</body>
+
+</html>

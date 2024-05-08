@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    <h1>Illustrating manipulating styles</h1>
+
+    <p>Manipulating styles is fun</p>
+
+    <div style="width: 200px;
+    height: 200px;
+    padding: 15px;
+    border: 10px solid black;
+    margin: 20px auto;">Cats like to organize their environment based on their needs. Like their ancestors, domestic cats still have an inherent desire to maintain an independent territory but are generally content to live with other cats for company as they easily get bored. Living alone for a longer time may cause them to forget how to communicate with other cats</div>
+
+    <h2 style="color : blue;">More styles to manipulate</h2>
+
+
+    <script>
+
+        let header1 = document.querySelector('h1');
+        header1.style.fontSize = '60px';
+        header1.style.color = 'red';
+
+        let paragraph = document.querySelector('p');
+        paragraph.style.fontSize = '30px';
+        paragraph.style.fontFamily = 'cursive';
+        paragraph.style.fontStyle = 'italic';
+        
+        let textBox = document.querySelector('div');
+        // replacing existing inline styling totally
+        textBox.style.cssText='width: 300px;height:300px;padding: 20px;border: 30px solid blue;margin:20px 10px;';
+
+
+        let header2 = document.querySelector('h2');
+        // adding new rules to the existing styling 
+        header2.style.cssText += 'border: 5px solid green;background-color:yellow';
+
+        //Using get computedStyle to determine the style of all the existing
+        let paragraphStyle = getComputedStyle(paragraph);
+        console.log("Font size of paragraph : ", paragraphStyle.fontSize);
+        console.log("Font family of paragraph : ", paragraphStyle.fontFamily);
+        console.log("Font style of paragraph : ", paragraphStyle.fontStyle);
+        console.log("Showing the entire contents of the CSSStyleDeclaration object");
+        console.log(paragraphStyle);
+        
+    </script>
+</body>
+
+</html>

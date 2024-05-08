@@ -22,15 +22,16 @@ let secondAdd = (x, y) => {
     return sum; 
 };
 
-
-console.log("Calling secondAdd arrow function with 10 and 20 gives us ", add(10, 20)); // 30;
+console.log("Calling secondAdd arrow function with 10 and 20 gives us ", secondAdd(10, 20)); // 30;
 
 // arrow functions can also have a single parameter
-increase = (x) => x + 1;
+let increase = (x) => x + 1;
 console.log("Increasing 3 by 1 gives us ", increase(3));
 
 // arrow functions can also have no parameters
 let logDoc = () => console.log("Hello there !");
 logDoc();
 
-
+// demonstrating the setTimeout function with the
+// callback function written in arrow function format
+setTimeout(() => console.log('Execute later after 2 seconds'), 5000);

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <p>Type something in the text box below </p>
+    <input type="text" id="message">
+
+
+
+    <script>
+
+        let textBox = document.getElementById('message');
+        textBox.addEventListener('keydown', (event) => {
+            console.log(`key=${event.key},code=${event.code}`);
+        });
+
+    </script>
+
+</body>
+
+</html>

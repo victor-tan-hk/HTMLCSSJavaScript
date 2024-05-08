@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    <h1>Illustrating object properties</h1>
+
+    <form>
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname">
+    </form>
+
+    <script>
+
+        let inputElement = document.querySelector('#fname');
+        console.log("The attributes of the input type text element are");
+
+        for (let attr of inputElement.attributes) {
+            console.log(`${attr.name} = ${attr.value}`)
+        }
+
+        console.log ("By right, before we attempt to get the value of an attribute, we should first check whether it exists");
+        if (inputElement.hasAttribute("type"))
+            console.log("The type attribute is ", inputElement.getAttribute("type"));
+
+        console.log("Setting the attribute value to john");
+        inputElement.setAttribute("value","john");
+
+    </script>
+</body>
+
+</html>
